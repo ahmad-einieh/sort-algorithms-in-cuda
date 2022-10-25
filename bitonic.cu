@@ -1,5 +1,5 @@
 // to run: nvcc bitonic.cu -gencode arch=compute_50,code=sm_50 
-// nvcc bitonic_sort.cu -o bitonic.out -gencode arch=compute_50,code=sm_50 
+
 // ahmad einieh 
 // 441106017
 
@@ -11,15 +11,8 @@
 __device__ __host__ int ipow(int base,int exp);
 
 __global__ void Bitoinc(int* input_array, int* output_array,int step,int stage, int size){
+
     int index = threadIdx.x + blockIdx.x * blockDim.x;
-    //int index = threadIdx.x;
-    //int powerStepStage = ipow(2,stage+step);
-    //int rrr = index / ipow(2,step);
-
-
-    //int ttt = ipow(2,stage-stage-1);
-    //bool sssss = index % ipow(2,step-stage+1) < ipow(2,step-stage);
-
     int N = ipow(2, step) / ipow(2, stage - 1);
     int shift = N / 2;
     char working = (index % N) < shift;
@@ -48,7 +41,6 @@ __global__ void Bitoinc(int* input_array, int* output_array,int step,int stage, 
 
 int main(int argc, char** argv){
 
-    //printf("%d",ipow(2,3));
     int *array, *array_sorted;
     int *device_array , *device_array_sorted;
     int n = 16; // we can change number of element in array
@@ -57,11 +49,9 @@ int main(int argc, char** argv){
     array = (int*) malloc(size);
     array_sorted = (int*) malloc(size);
     
-    //printf("Enter the unsorted numbers: (%d numbers)\n", n);
     for (int i = 0; i < n; i++)
     {
         array[i] =rand();
-        //scanf("%d", &array[i]);
     }
     printf("\n");
     for (int k= 0; k < n; k++) {
