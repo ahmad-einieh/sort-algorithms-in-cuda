@@ -54,7 +54,7 @@ int main()
 
     cudaMemcpy(device_array,array,size,cudaMemcpyHostToDevice);
 
-    ranksort<<<1,n>>>(device_array,device_array_sorted,n);
+    ranksort<<<n,n>>>(device_array,device_array_sorted,n);
 
     cudaMemcpy(array_sorted, device_array_sorted, size, cudaMemcpyDeviceToHost);
 

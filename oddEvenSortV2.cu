@@ -48,9 +48,9 @@ int main()
 
     int s;
     for (s = 1; s <= (n / 2); s++) {
-        oddEven <<<1, n>>> ( device_array, device_array_sorted, n, 1);
+        oddEven <<<n, n>>> ( device_array, device_array_sorted, n, 1);
         cudaThreadSynchronize();
-        oddEven <<<1, n>>> (device_array_sorted, device_array, n, 0);
+        oddEven <<<n, n>>> (device_array_sorted, device_array, n, 0);
         cudaThreadSynchronize();
     }
 

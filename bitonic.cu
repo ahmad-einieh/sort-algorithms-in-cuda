@@ -1,4 +1,4 @@
-// to run: nvcc bitonic.cu -gencode arch=compute_50,code=sm_50 
+// to run: nvcc bitonic.cu -o bitonic -gencode arch=compute_50,code=sm_50 
 
 // ahmad einieh 
 // 441106017
